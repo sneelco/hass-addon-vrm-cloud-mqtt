@@ -11,9 +11,11 @@ from vrm_cloud_mqtt.vrm import VrmLogin, VrmSite
 logger = logging.getLogger("poller")
 
 
-def poll_vrm(sites: list[VrmSite]) -> dict:
+def poll_vrm(vrm: VrmLogin) -> dict:
     """Poll the Vrm."""
     data = {}
+
+    sites = vrm.get_sites()
 
     for site in sites:
         msg = f"Polling site {site.site_id}"
@@ -24,9 +26,9 @@ def poll_vrm(sites: list[VrmSite]) -> dict:
     return data
 
 
-def run_interval(sites: list[VrmSite], mqtt_client: MqttClient) -> None:
+def run_interval(vrm: VrmLogin, mqtt_client: MqttClient) -> None:
     """Run the polling interval."""
-    site_data = poll_vrm(sites)
+    site_data = poll_vrm(vrm)
 
     for site_id, devices in site_data.items():
         for device in devices:
@@ -35,14 +37,12 @@ def run_interval(sites: list[VrmSite], mqtt_client: MqttClient) -> None:
 
 def start_polling(vrm: VrmLogin, mqtt_client: MqttClient) -> None:
     """Start polling."""
-    sites = vrm.get_sites()
-
     msg = f"Polling interval: {settings.poll_interval} seconds"
     logger.info(msg)
 
     try:
         while True:
-            run_interval(sites, mqtt_client)
+            run_interval(vrm, mqtt_client)
             sleep(settings.poll_interval)
 
     except KeyboardInterrupt:
