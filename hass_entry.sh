@@ -3,7 +3,7 @@
 
 export VRM_MQTT_HOST=$(bashio::config 'mqtt_host' $(bashio::services mqtt "host" " "))
 export VRM_MQTT_PORT=$(bashio::config 'mqtt_port' $(bashio::services mqtt "port" " "))
-export VRM_MQTT_USER=$(bashio::config 'mqtt_username' $(bashio::services mqtt "username" " "))
+export VRM_MQTT_USERNAME=$(bashio::config 'mqtt_username' $(bashio::services mqtt "username" " "))
 export VRM_MQTT_PASSWORD=$(bashio::config 'mqtt_password' $(bashio::services mqtt "password" " "))
 export VRM_MQTT_TOPIC=$(bashio::config 'mqtt_topic')
 
