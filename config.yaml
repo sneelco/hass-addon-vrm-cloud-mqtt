@@ -1,0 +1,32 @@
+name: "VRM Cloud to MQTT"
+description: "Retrieves data from VRM Cloud and publishes it to MQTT"
+version: "1.0.0"
+slug: "vrm-cloud-mqtt"
+init: false
+url: https://github.com/sneelco/hassio-addon-vrm-cloud-mqtt
+map:
+  - share:rw
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+services:
+  - mqtt:want
+options:
+  mqtt_topic: vrm/cloud
+  vrm_poll_interval: 60
+  vrm_debug: false
+schema:
+  vrm_username: "str"
+  vrm_password: "password"
+  vrm_site_id: "str"
+  vrm_poll_interval: "int"
+  vrm_debug: "bool"
+  mqtt_host: "str?"
+  mqtt_port: "port?"
+  mqtt_username: "str?"
+  mqtt_password: "password?"
+  mqtt_topic: "str"
+
