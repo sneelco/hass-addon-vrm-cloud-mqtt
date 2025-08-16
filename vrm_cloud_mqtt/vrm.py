@@ -204,6 +204,6 @@ class VrmSite:
             if key not in devices:
                 devices[key] = {}
 
-            devices[key][item.get("description")] = item.get("rawValue")
+            devices[key][self.normalize_device_name(item.get("description"))] = item.get("rawValue")
 
         return devices
