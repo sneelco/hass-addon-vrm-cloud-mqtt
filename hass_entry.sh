@@ -11,6 +11,8 @@ export VRM_USERNAME=$(bashio::config 'vrm_username')
 export VRM_PASSWORD=$(bashio::config 'vrm_password')
 export VRM_SITE_ID=$(bashio::config 'vrm_site_id')
 export VRM_POLL_INTERVAL=$(bashio::config 'vrm_poll_interval')
+export VRM_TOKEN_NAME=$(bashio::config 'vrm_token_name')
+export VRM_DEBUG=$(bashio::config 'vrm_debug')
 
 
   uv run run_poller.py

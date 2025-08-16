@@ -1,6 +1,6 @@
 name: "VRM Cloud to MQTT"
 description: "Retrieves data from VRM Cloud and publishes it to MQTT"
-version: "1.0.0"
+version: "1.0.1"
 slug: "vrm-cloud-mqtt"
 init: false
 url: https://github.com/sneelco/hassio-addon-vrm-cloud-mqtt
@@ -17,12 +17,14 @@ services:
 options:
   mqtt_topic: vrm/cloud
   vrm_poll_interval: 60
+  vrm_token_name: "vrm-cloud-mqtt-hass"
   vrm_debug: false
 schema:
   vrm_username: "str"
   vrm_password: "password"
   vrm_site_id: "str"
   vrm_poll_interval: "int"
+  vrm_token_name: "str"
   vrm_debug: "bool"
   mqtt_host: "str?"
   mqtt_port: "port?"
