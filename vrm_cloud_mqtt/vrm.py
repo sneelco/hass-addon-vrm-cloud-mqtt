@@ -107,7 +107,7 @@ class VrmLogin:
             logger.info(msg)
             self.revoke_access_token(token_id)
 
-        self.create_access_token(response_data["token"])
+        self.create_access_token()
 
     def revoke_access_token(self, token_id: str) -> None:
         """Revoke an access token."""
