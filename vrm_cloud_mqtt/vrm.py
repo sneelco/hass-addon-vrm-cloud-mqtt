@@ -53,7 +53,7 @@ class VrmLogin:
 
     def _load_cached_data(self) -> None:
         """Load cached token and idUser from disk if they exist."""
-        cache_file = Path(".cache")
+        cache_file = Path(settings.cache_dir) / ".cache"
         if cache_file.exists():
             try:
                 with cache_file.open("r") as f:
@@ -70,7 +70,7 @@ class VrmLogin:
 
     def _save_data_to_cache(self, access_token: str, id_user) -> None:
         """Save token and idUser to disk cache."""
-        cache_file = Path(".cache")
+        cache_file = Path(settings.cache_dir) / ".cache"
         try:
             cache_data = {"access_token": access_token, "idUser": id_user}
             with cache_file.open("w") as f:

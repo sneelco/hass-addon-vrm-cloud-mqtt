@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     mqtt_password: str | None = Field(description="MQTT password", default=None)
     poll_interval: int = Field(description="Poll interval", default=60)
     debug: bool = Field(description="Enable debug logging", default=False)
+    cache_dir: str = Field(description="Cache directory", default=".")
 
 
 # Create a global settings instance
