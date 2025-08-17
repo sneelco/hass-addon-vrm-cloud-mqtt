@@ -84,7 +84,7 @@ class VrmLogin:
 
     def login(self) -> None:
         """Login to the Victron Energy VRM API."""
-        msg = f"Logging in with username: {self.username} and password: {self.password}"
+        msg = f"Logging in with username: {self.username}"
         logger.info(msg)
         url = f"{self.base_url}/auth/login"
         result = httpx.post(url, json={"username": self.username, "password": self.password})
@@ -160,7 +160,7 @@ class VrmLogin:
             raise VrmExceptionError("Failed to create access token")
 
         self._access_token = response_data.get("token")
-        self._save_data_to_cache(self.token, self.id_user)
+        self._save_data_to_cache(self._access_token, self.id_user)
         return response_data
 
     def get_sites(self) -> Generator["VrmSite", None, None]:
@@ -170,7 +170,7 @@ class VrmLogin:
         data = result.json()
 
         if not data.get("success", False):
-            raise VrmExceptionError("Failed to get sites", data)
+            raise VrmExceptionError("Failed to get sites")
 
         for site in data.get("records", []):
             yield VrmSite(self, site.get("idSite"))
