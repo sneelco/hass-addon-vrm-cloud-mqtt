@@ -170,7 +170,7 @@ class VrmLogin:
         data = result.json()
 
         if not data.get("success", False):
-            raise VrmExceptionError("Failed to get sites")
+            raise VrmExceptionError("Failed to get sites", data)
 
         for site in data.get("records", []):
             yield VrmSite(self, site.get("idSite"))
