@@ -17,4 +17,10 @@ export VRM_DEBUG=$(bashio::config 'vrm_debug')
 
 export VRM_CACHE_DIR=/data
 
-  uv run run_poller.py
+export CLEAR_TOKEN_CACHE=$(bashio::config 'clear_token_cache')
+
+if [ "$VRM_CLEAR_TOKEN_CACHE" == "true" ]; then
+  rm -f $VRM_CACHE_DIR/.cache
+fi
+
+uv run run_poller.py
