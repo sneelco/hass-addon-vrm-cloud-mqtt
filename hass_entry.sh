@@ -19,7 +19,7 @@ export VRM_CACHE_DIR=/data
 
 export CLEAR_TOKEN_CACHE=$(bashio::config 'clear_token_cache')
 
-if [ "$VRM_CLEAR_TOKEN_CACHE" == "true" ]; then
+if [ "$CLEAR_TOKEN_CACHE" == "true" ]; then
   rm -f $VRM_CACHE_DIR/.cache
 fi
 
